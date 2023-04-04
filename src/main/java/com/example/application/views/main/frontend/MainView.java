@@ -1,7 +1,10 @@
-package com.example.application.views.main;
+package com.example.application.views.main.frontend;
 
 import java.io.IOException;
 
+import com.example.application.views.main.data.SupportProfile;
+import com.example.application.views.main.service.SupportProfileService;
+import com.example.application.views.main.web.GPTRequest;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.notification.Notification;
@@ -68,12 +71,14 @@ public class MainView extends VerticalLayout {
         supportProfileRequest.setUserPrompt(userPrompt);
 
         try {
-            SupportProfileResponse supportProfileResponse = supportProfileService
+            SupportProfile supportProfileResponse = supportProfileService
                     .createSupportProfile(supportProfileRequest);
 
             if (supportProfileResponse != null) {
                 supportProfileForm.setVisible(true);
-                supportProfileForm.setSupportProfileResponse(supportProfileResponse);
+                supportProfileForm.setSupportProfile(supportProfileResponse);
+
+                supportProfileService.saveSupportProfile(supportProfileResponse);
 
                 log.info("Support Profile data received: {}", supportProfileResponse);
 

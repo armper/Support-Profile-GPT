@@ -1,5 +1,6 @@
-package com.example.application.views.main;
+package com.example.application.views.main.frontend;
 
+import com.example.application.views.main.elements.VoiceRecognition;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Composite;

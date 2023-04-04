@@ -1,19 +1,22 @@
-package com.example.application.views.main;
+package com.example.application.views.main.web;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GptRequest {
     private String model;
     private List<Message> messages;
-    private int max_tokens;
+    @JsonProperty("max_tokens")
+    private int maxTokens;
     private int n;
     private Object stop;
     private double temperature;
 
-    public GptRequest(String model, List<Message> messages, int max_tokens, int n, Object stop, double temperature) {
+    public GptRequest(String model, List<Message> messages, int maxTokens, int n, Object stop, double temperature) {
         this.model = model;
         this.messages = messages;
-        this.max_tokens = max_tokens;
+        this.maxTokens = maxTokens;
         this.n = n;
         this.stop = stop;
         this.temperature = temperature;
@@ -35,12 +38,12 @@ public class GptRequest {
         this.messages = messages;
     }
 
-    public int getMax_tokens() {
-        return max_tokens;
+    public int getMaxTokens() {
+        return maxTokens;
     }
 
-    public void setMax_tokens(int max_tokens) {
-        this.max_tokens = max_tokens;
+    public void setMaxTokens(int maxTokens) {
+        this.maxTokens = maxTokens;
     }
 
     public int getN() {

@@ -1,4 +1,4 @@
-package com.example.application.views.main;
+package com.example.application.views.main.web;
 
 public class Message {
     private String role;

@@ -1,4 +1,4 @@
-package com.example.application.views.main;
+package com.example.application.views.main.elements;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
