@@ -20,7 +20,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.0.5</version>
-        
+
     </parent>
 
     <repositories>
@@ -30,6 +30,12 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+        </repository>
+
+        <!-- Vaadin Maven repository -->
+        <repository>
+            <id>Vaadin Directory</id>
+            <url>https://maven.vaadin.com/vaadin-addons</url>
         </repository>
     </repositories>
 
@@ -88,6 +94,12 @@
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-testbench-junit5</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.vaadin.addons.pandalyte</groupId>
+            <artifactId>voice-recognition</artifactId>
+            <version>1.0.2</version>
         </dependency>
 
 

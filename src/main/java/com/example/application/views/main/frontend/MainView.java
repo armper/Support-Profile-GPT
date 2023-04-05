@@ -58,7 +58,7 @@ public class MainView extends VerticalLayout {
         supportProfileForm.setVisible(false);
 
         add(
-                // voiceRecognitionView,
+                voiceRecognitionView,
                 gptKey, paragraph, instructions, impactInstructions, consumerInstructions, userInputField, submitButton,
                 supportProfileForm);
     }

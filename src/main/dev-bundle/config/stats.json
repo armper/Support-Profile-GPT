@@ -142,7 +142,6 @@
   "@vaadin/vaadin-usage-statistics": "2.1.2",
   "@vaadin/vertical-layout": "24.0.2",
   "@vaadin/virtual-list": "24.0.2",
-  "construct-style-sheets-polyfill": "3.1.0",
   "cookieconsent": "3.1.1",
   "date-fns": "2.29.3",
   "highcharts": "9.2.2",
@@ -275,13 +274,11 @@
   "vaadin-map/mapConnector.js": "de0c5df521fb0f62341cc0bb372a3e5269b89fc7daccb2f5e14a937e161ab33b",
   "vaadin-time-picker/timepickerConnector.js": "68889ce9748478f71bf1620d488abbbd588f8047618ac558315d9b0b689e75e8",
   "virtualListConnector.js": "e89f6bc6f5cd4765c863ae12721371ebff9079d163679e3989368fb7f74e5e61",
-  "voice-recognition.js": "e43db91667a956c23de5642540a8c079815e1af2e3febcee19508f67ae25f852"
+  "voice-recognition.js": "f9223dbf1c63578239bfdb560deac55597ad7b848636a6ca603aadfe29b820c6"
  },
- "themeJsonContents": {
-  "mytodo": "{\n  \"lumoImports\" : [ \"typography\", \"color\", \"spacing\", \"badge\", \"utility\" ]\n}"
- },
+ "themeJsonContents": {},
  "entryScripts": [
-  "VAADIN/build/indexhtml-183ee29f.js"
+  "VAADIN/build/indexhtml-39a47dcf.js"
  ],
  "webComponents": [],
  "packageJsonHash": "dc4ed1948e335019ca19fb8dde48f58266bb3b5796934c011779c53d6e803ac1"

@@ -1,11 +1,12 @@
 package com.example.application.views.main.frontend;
 
-import com.example.application.views.main.elements.VoiceRecognition;
+import org.vaadin.addons.pandalyte.VoiceRecognition;
+
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Composite;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.shared.Registration;
 
 public class VoiceRecognitionView extends Composite<Div> {
@@ -15,13 +16,9 @@ public class VoiceRecognitionView extends Composite<Div> {
         voiceRecognition = new VoiceRecognition();
         voiceRecognition.setContinuous(false);
 
-        Button startButton = new Button("Start", event -> voiceRecognition.start());
-        Button stopButton = new Button("Stop", event -> voiceRecognition.stop());
-        Button abortButton = new Button("Abort", event -> voiceRecognition.abort());
-
         voiceRecognition.addResultListener(event -> fireEvent(new TextReadyEvent(this, event.getSpeech())));
 
-        getContent().add(voiceRecognition, startButton, stopButton, abortButton);
+        getContent().add(new Label("Use the Start button to record your voice"), voiceRecognition);
     }
 
     public Registration addTextReadyListener(ComponentEventListener<TextReadyEvent> listener) {

@@ -1,4 +1,205 @@
-import{c as css$e,r as registerStyles$1,T as ThemableMixin,a as ThemePropertyMixin,b as render$1,h as html$1,D as Directive,n as nothing,P as PartType,d as noChange,e as directive,s as svg$6,f as color$h,t as typography,g as themeRegistry,u as unsafeCSS,L as LitElement}from"./indexhtml-183ee29f.js";/**
+import{C as CSSResult,c as css$e,r as render$1,h as html$1,D as Directive,n as nothing,P as PartType,a as noChange,d as directive,s as svg$6,u as unsafeCSS,L as LitElement}from"./indexhtml-39a47dcf.js";/**
+ * @license
+ * Copyright (c) 2017 - 2023 Vaadin Ltd.
+ * This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+ */class Lumo extends HTMLElement{static get version(){return"24.0.2"}}customElements.define("vaadin-lumo-styles",Lumo);/**
+ * @license
+ * Copyright (c) 2017 - 2023 Vaadin Ltd.
+ * This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+ */const ThemePropertyMixin=n=>class extends n{static get properties(){return{_theme:{type:String,readOnly:!0}}}static get observedAttributes(){return[...super.observedAttributes,"theme"]}attributeChangedCallback(t,r,o){super.attributeChangedCallback(t,r,o),t==="theme"&&this._set_theme(o)}};/**
+ * @license
+ * Copyright (c) 2017 - 2023 Vaadin Ltd.
+ * This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+ */const themeRegistry=[];function classHasThemes(n){return n&&Object.prototype.hasOwnProperty.call(n,"__themes")}function hasThemes(n){return classHasThemes(customElements.get(n))}function flattenStyles(n=[]){return[n].flat(1/0).filter(i=>i instanceof CSSResult?!0:(console.warn("An item in styles is not of type CSSResult. Use `unsafeCSS` or `css`."),!1))}function registerStyles$1(n,i,t={}){n&&hasThemes(n)&&console.warn(`The custom element definition for "${n}"
+      was finalized before a style module was registered.
+      Make sure to add component specific style modules before
+      importing the corresponding custom element.`),i=flattenStyles(i),window.Vaadin&&window.Vaadin.styleModules?window.Vaadin.styleModules.registerStyles(n,i,t):themeRegistry.push({themeFor:n,styles:i,include:t.include,moduleId:t.moduleId})}function getAllThemes$1(){return window.Vaadin&&window.Vaadin.styleModules?window.Vaadin.styleModules.getAllThemes():themeRegistry}function matchesThemeFor(n,i){return(n||"").split(" ").some(t=>new RegExp(`^${t.split("*").join(".*")}$`,"u").test(i))}function getIncludePriority(n=""){let i=0;return n.startsWith("lumo-")||n.startsWith("material-")?i=1:n.startsWith("vaadin-")&&(i=2),i}function getIncludedStyles(n){const i=[];return n.include&&[].concat(n.include).forEach(t=>{const r=getAllThemes$1().find(o=>o.moduleId===t);r?i.push(...getIncludedStyles(r),...r.styles):console.warn(`Included moduleId ${t} not found in style registry`)},n.styles),i}function addStylesToTemplate(n,i){const t=document.createElement("style");t.innerHTML=n.map(r=>r.cssText).join(`
+`),i.content.appendChild(t)}function getThemes(n){const i=`${n}-default-theme`,t=getAllThemes$1().filter(r=>r.moduleId!==i&&matchesThemeFor(r.themeFor,n)).map(r=>({...r,styles:[...getIncludedStyles(r),...r.styles],includePriority:getIncludePriority(r.moduleId)})).sort((r,o)=>o.includePriority-r.includePriority);return t.length>0?t:getAllThemes$1().filter(r=>r.moduleId===i)}const ThemableMixin=n=>class extends ThemePropertyMixin(n){static finalize(){if(super.finalize(),this.elementStyles)return;const t=this.prototype._template;!t||classHasThemes(this)||addStylesToTemplate(this.getStylesForThis(),t)}static finalizeStyles(t){const r=this.getStylesForThis();return t?[...super.finalizeStyles(t),...r]:r}static getStylesForThis(){const t=Object.getPrototypeOf(this.prototype),r=(t?t.constructor.__themes:[])||[];this.__themes=[...r,...getThemes(this.is)];const o=this.__themes.flatMap(a=>a.styles);return o.filter((a,s)=>s===o.lastIndexOf(a))}};/**
+ * @license
+ * Copyright (c) 2017 - 2023 Vaadin Ltd.
+ * This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+ */const colorBase=css$e`
+  :host {
+    /* Base (background) */
+    --lumo-base-color: #fff;
+
+    /* Tint */
+    --lumo-tint-5pct: hsla(0, 0%, 100%, 0.3);
+    --lumo-tint-10pct: hsla(0, 0%, 100%, 0.37);
+    --lumo-tint-20pct: hsla(0, 0%, 100%, 0.44);
+    --lumo-tint-30pct: hsla(0, 0%, 100%, 0.5);
+    --lumo-tint-40pct: hsla(0, 0%, 100%, 0.57);
+    --lumo-tint-50pct: hsla(0, 0%, 100%, 0.64);
+    --lumo-tint-60pct: hsla(0, 0%, 100%, 0.7);
+    --lumo-tint-70pct: hsla(0, 0%, 100%, 0.77);
+    --lumo-tint-80pct: hsla(0, 0%, 100%, 0.84);
+    --lumo-tint-90pct: hsla(0, 0%, 100%, 0.9);
+    --lumo-tint: #fff;
+
+    /* Shade */
+    --lumo-shade-5pct: hsla(214, 61%, 25%, 0.05);
+    --lumo-shade-10pct: hsla(214, 57%, 24%, 0.1);
+    --lumo-shade-20pct: hsla(214, 53%, 23%, 0.16);
+    --lumo-shade-30pct: hsla(214, 50%, 22%, 0.26);
+    --lumo-shade-40pct: hsla(214, 47%, 21%, 0.38);
+    --lumo-shade-50pct: hsla(214, 45%, 20%, 0.52);
+    --lumo-shade-60pct: hsla(214, 43%, 19%, 0.6);
+    --lumo-shade-70pct: hsla(214, 42%, 18%, 0.69);
+    --lumo-shade-80pct: hsla(214, 41%, 17%, 0.83);
+    --lumo-shade-90pct: hsla(214, 40%, 16%, 0.94);
+    --lumo-shade: hsl(214, 35%, 15%);
+
+    /* Contrast */
+    --lumo-contrast-5pct: var(--lumo-shade-5pct);
+    --lumo-contrast-10pct: var(--lumo-shade-10pct);
+    --lumo-contrast-20pct: var(--lumo-shade-20pct);
+    --lumo-contrast-30pct: var(--lumo-shade-30pct);
+    --lumo-contrast-40pct: var(--lumo-shade-40pct);
+    --lumo-contrast-50pct: var(--lumo-shade-50pct);
+    --lumo-contrast-60pct: var(--lumo-shade-60pct);
+    --lumo-contrast-70pct: var(--lumo-shade-70pct);
+    --lumo-contrast-80pct: var(--lumo-shade-80pct);
+    --lumo-contrast-90pct: var(--lumo-shade-90pct);
+    --lumo-contrast: var(--lumo-shade);
+
+    /* Text */
+    --lumo-header-text-color: var(--lumo-contrast);
+    --lumo-body-text-color: var(--lumo-contrast-90pct);
+    --lumo-secondary-text-color: var(--lumo-contrast-70pct);
+    --lumo-tertiary-text-color: var(--lumo-contrast-50pct);
+    --lumo-disabled-text-color: var(--lumo-contrast-30pct);
+
+    /* Primary */
+    --lumo-primary-color: hsl(214, 100%, 48%);
+    --lumo-primary-color-50pct: hsla(214, 100%, 49%, 0.76);
+    --lumo-primary-color-10pct: hsla(214, 100%, 60%, 0.13);
+    --lumo-primary-text-color: hsl(214, 100%, 43%);
+    --lumo-primary-contrast-color: #fff;
+
+    /* Error */
+    --lumo-error-color: hsl(3, 85%, 48%);
+    --lumo-error-color-50pct: hsla(3, 85%, 49%, 0.5);
+    --lumo-error-color-10pct: hsla(3, 85%, 49%, 0.1);
+    --lumo-error-text-color: hsl(3, 89%, 42%);
+    --lumo-error-contrast-color: #fff;
+
+    /* Success */
+    --lumo-success-color: hsl(145, 72%, 30%);
+    --lumo-success-color-50pct: hsla(145, 72%, 31%, 0.5);
+    --lumo-success-color-10pct: hsla(145, 72%, 31%, 0.1);
+    --lumo-success-text-color: hsl(145, 85%, 25%);
+    --lumo-success-contrast-color: #fff;
+  }
+`,$tpl$5=document.createElement("template");$tpl$5.innerHTML=`<style>${colorBase.toString().replace(":host","html")}</style>`;document.head.appendChild($tpl$5.content);const color$h=css$e`
+  [theme~='dark'] {
+    /* Base (background) */
+    --lumo-base-color: hsl(214, 35%, 21%);
+
+    /* Tint */
+    --lumo-tint-5pct: hsla(214, 65%, 85%, 0.06);
+    --lumo-tint-10pct: hsla(214, 60%, 80%, 0.14);
+    --lumo-tint-20pct: hsla(214, 64%, 82%, 0.23);
+    --lumo-tint-30pct: hsla(214, 69%, 84%, 0.32);
+    --lumo-tint-40pct: hsla(214, 73%, 86%, 0.41);
+    --lumo-tint-50pct: hsla(214, 78%, 88%, 0.5);
+    --lumo-tint-60pct: hsla(214, 82%, 90%, 0.58);
+    --lumo-tint-70pct: hsla(214, 87%, 92%, 0.69);
+    --lumo-tint-80pct: hsla(214, 91%, 94%, 0.8);
+    --lumo-tint-90pct: hsla(214, 96%, 96%, 0.9);
+    --lumo-tint: hsl(214, 100%, 98%);
+
+    /* Shade */
+    --lumo-shade-5pct: hsla(214, 0%, 0%, 0.07);
+    --lumo-shade-10pct: hsla(214, 4%, 2%, 0.15);
+    --lumo-shade-20pct: hsla(214, 8%, 4%, 0.23);
+    --lumo-shade-30pct: hsla(214, 12%, 6%, 0.32);
+    --lumo-shade-40pct: hsla(214, 16%, 8%, 0.41);
+    --lumo-shade-50pct: hsla(214, 20%, 10%, 0.5);
+    --lumo-shade-60pct: hsla(214, 24%, 12%, 0.6);
+    --lumo-shade-70pct: hsla(214, 28%, 13%, 0.7);
+    --lumo-shade-80pct: hsla(214, 32%, 13%, 0.8);
+    --lumo-shade-90pct: hsla(214, 33%, 13%, 0.9);
+    --lumo-shade: hsl(214, 33%, 13%);
+
+    /* Contrast */
+    --lumo-contrast-5pct: var(--lumo-tint-5pct);
+    --lumo-contrast-10pct: var(--lumo-tint-10pct);
+    --lumo-contrast-20pct: var(--lumo-tint-20pct);
+    --lumo-contrast-30pct: var(--lumo-tint-30pct);
+    --lumo-contrast-40pct: var(--lumo-tint-40pct);
+    --lumo-contrast-50pct: var(--lumo-tint-50pct);
+    --lumo-contrast-60pct: var(--lumo-tint-60pct);
+    --lumo-contrast-70pct: var(--lumo-tint-70pct);
+    --lumo-contrast-80pct: var(--lumo-tint-80pct);
+    --lumo-contrast-90pct: var(--lumo-tint-90pct);
+    --lumo-contrast: var(--lumo-tint);
+
+    /* Text */
+    --lumo-header-text-color: var(--lumo-contrast);
+    --lumo-body-text-color: var(--lumo-contrast-90pct);
+    --lumo-secondary-text-color: var(--lumo-contrast-70pct);
+    --lumo-tertiary-text-color: var(--lumo-contrast-50pct);
+    --lumo-disabled-text-color: var(--lumo-contrast-30pct);
+
+    /* Primary */
+    --lumo-primary-color: hsl(214, 90%, 48%);
+    --lumo-primary-color-50pct: hsla(214, 90%, 70%, 0.69);
+    --lumo-primary-color-10pct: hsla(214, 90%, 55%, 0.13);
+    --lumo-primary-text-color: hsl(214, 90%, 77%);
+    --lumo-primary-contrast-color: #fff;
+
+    /* Error */
+    --lumo-error-color: hsl(3, 79%, 49%);
+    --lumo-error-color-50pct: hsla(3, 75%, 62%, 0.5);
+    --lumo-error-color-10pct: hsla(3, 75%, 62%, 0.14);
+    --lumo-error-text-color: hsl(3, 100%, 80%);
+
+    /* Success */
+    --lumo-success-color: hsl(145, 72%, 30%);
+    --lumo-success-color-50pct: hsla(145, 92%, 51%, 0.5);
+    --lumo-success-color-10pct: hsla(145, 92%, 51%, 0.1);
+    --lumo-success-text-color: hsl(145, 85%, 46%);
+  }
+
+  html {
+    color: var(--lumo-body-text-color);
+    background-color: var(--lumo-base-color);
+    color-scheme: light;
+  }
+
+  [theme~='dark'] {
+    color: var(--lumo-body-text-color);
+    background-color: var(--lumo-base-color);
+    color-scheme: dark;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--lumo-header-text-color);
+  }
+
+  a:where(:any-link) {
+    color: var(--lumo-primary-text-color);
+  }
+
+  a:not(:any-link) {
+    color: var(--lumo-disabled-text-color);
+  }
+
+  blockquote {
+    color: var(--lumo-secondary-text-color);
+  }
+
+  code,
+  pre {
+    background-color: var(--lumo-contrast-10pct);
+    border-radius: var(--lumo-border-radius-m);
+  }
+`;registerStyles$1("",color$h,{moduleId:"lumo-color"});/**
  * @license
  * Copyright (c) 2017 - 2023 Vaadin Ltd.
  * This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
@@ -75,7 +276,177 @@ import{c as css$e,r as registerStyles$1,T as ThemableMixin,a as ThemePropertyMix
     /* For backwards compatibility */
     --lumo-icon-size: var(--lumo-icon-size-m);
   }
-`,$tpl$1=document.createElement("template");$tpl$1.innerHTML=`<style>${sizing.toString().replace(":host","html")}</style>`;document.head.appendChild($tpl$1.content);registerStyles$1("vaadin-checkbox",css$e`
+`,$tpl$4=document.createElement("template");$tpl$4.innerHTML=`<style>${sizing.toString().replace(":host","html")}</style>`;document.head.appendChild($tpl$4.content);/**
+ * @license
+ * Copyright (c) 2017 - 2023 Vaadin Ltd.
+ * This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+ */const spacing=css$e`
+  :host {
+    /* Square */
+    --lumo-space-xs: 0.25rem;
+    --lumo-space-s: 0.5rem;
+    --lumo-space-m: 1rem;
+    --lumo-space-l: 1.5rem;
+    --lumo-space-xl: 2.5rem;
+
+    /* Wide */
+    --lumo-space-wide-xs: calc(var(--lumo-space-xs) / 2) var(--lumo-space-xs);
+    --lumo-space-wide-s: calc(var(--lumo-space-s) / 2) var(--lumo-space-s);
+    --lumo-space-wide-m: calc(var(--lumo-space-m) / 2) var(--lumo-space-m);
+    --lumo-space-wide-l: calc(var(--lumo-space-l) / 2) var(--lumo-space-l);
+    --lumo-space-wide-xl: calc(var(--lumo-space-xl) / 2) var(--lumo-space-xl);
+
+    /* Tall */
+    --lumo-space-tall-xs: var(--lumo-space-xs) calc(var(--lumo-space-xs) / 2);
+    --lumo-space-tall-s: var(--lumo-space-s) calc(var(--lumo-space-s) / 2);
+    --lumo-space-tall-m: var(--lumo-space-m) calc(var(--lumo-space-m) / 2);
+    --lumo-space-tall-l: var(--lumo-space-l) calc(var(--lumo-space-l) / 2);
+    --lumo-space-tall-xl: var(--lumo-space-xl) calc(var(--lumo-space-xl) / 2);
+  }
+`,$tpl$3=document.createElement("template");$tpl$3.innerHTML=`<style>${spacing.toString().replace(":host","html")}</style>`;document.head.appendChild($tpl$3.content);/**
+ * @license
+ * Copyright (c) 2017 - 2023 Vaadin Ltd.
+ * This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+ */const style=css$e`
+  :host {
+    /* Border radius */
+    --lumo-border-radius-s: 0.25em; /* Checkbox, badge, date-picker year indicator, etc */
+    --lumo-border-radius-m: var(--lumo-border-radius, 0.25em); /* Button, text field, menu overlay, etc */
+    --lumo-border-radius-l: 0.5em; /* Dialog, notification, etc */
+
+    /* Shadow */
+    --lumo-box-shadow-xs: 0 1px 4px -1px var(--lumo-shade-50pct);
+    --lumo-box-shadow-s: 0 2px 4px -1px var(--lumo-shade-20pct), 0 3px 12px -1px var(--lumo-shade-30pct);
+    --lumo-box-shadow-m: 0 2px 6px -1px var(--lumo-shade-20pct), 0 8px 24px -4px var(--lumo-shade-40pct);
+    --lumo-box-shadow-l: 0 3px 18px -2px var(--lumo-shade-20pct), 0 12px 48px -6px var(--lumo-shade-40pct);
+    --lumo-box-shadow-xl: 0 4px 24px -3px var(--lumo-shade-20pct), 0 18px 64px -8px var(--lumo-shade-40pct);
+
+    /* Clickable element cursor */
+    --lumo-clickable-cursor: default;
+  }
+`;css$e`
+  html {
+    --vaadin-checkbox-size: calc(var(--lumo-size-m) / 2);
+    --vaadin-radio-button-size: calc(var(--lumo-size-m) / 2);
+    --vaadin-input-field-border-radius: var(--lumo-border-radius-m);
+  }
+`;const $tpl$2=document.createElement("template");$tpl$2.innerHTML=`<style>${style.toString().replace(":host","html")}$</style>`;document.head.appendChild($tpl$2.content);/**
+ * @license
+ * Copyright (c) 2017 - 2023 Vaadin Ltd.
+ * This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+ */const font=css$e`
+  :host {
+    /* prettier-ignore */
+    --lumo-font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+    /* Font sizes */
+    --lumo-font-size-xxs: 0.75rem;
+    --lumo-font-size-xs: 0.8125rem;
+    --lumo-font-size-s: 0.875rem;
+    --lumo-font-size-m: 1rem;
+    --lumo-font-size-l: 1.125rem;
+    --lumo-font-size-xl: 1.375rem;
+    --lumo-font-size-xxl: 1.75rem;
+    --lumo-font-size-xxxl: 2.5rem;
+
+    /* Line heights */
+    --lumo-line-height-xs: 1.25;
+    --lumo-line-height-s: 1.375;
+    --lumo-line-height-m: 1.625;
+  }
+`,typography=css$e`
+  body,
+  :host {
+    font-family: var(--lumo-font-family);
+    font-size: var(--lumo-font-size-m);
+    line-height: var(--lumo-line-height-m);
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  small,
+  [theme~='font-size-s'] {
+    font-size: var(--lumo-font-size-s);
+    line-height: var(--lumo-line-height-s);
+  }
+
+  [theme~='font-size-xs'] {
+    font-size: var(--lumo-font-size-xs);
+    line-height: var(--lumo-line-height-xs);
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-weight: 600;
+    line-height: var(--lumo-line-height-xs);
+    margin: 0;
+  }
+
+  :where(h1) {
+    font-size: var(--lumo-font-size-xxxl);
+  }
+
+  :where(h2) {
+    font-size: var(--lumo-font-size-xxl);
+  }
+
+  :where(h3) {
+    font-size: var(--lumo-font-size-xl);
+  }
+
+  :where(h4) {
+    font-size: var(--lumo-font-size-l);
+  }
+
+  :where(h5) {
+    font-size: var(--lumo-font-size-m);
+  }
+
+  :where(h6) {
+    font-size: var(--lumo-font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  p,
+  blockquote {
+    margin-top: 0.5em;
+    margin-bottom: 0.75em;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:where(:any-link):hover {
+    text-decoration: underline;
+  }
+
+  hr {
+    display: block;
+    align-self: stretch;
+    height: 1px;
+    border: 0;
+    padding: 0;
+    margin: var(--lumo-space-s) calc(var(--lumo-border-radius-m) / 2);
+    background-color: var(--lumo-contrast-10pct);
+  }
+
+  blockquote {
+    border-left: 2px solid var(--lumo-contrast-30pct);
+  }
+
+  b,
+  strong {
+    font-weight: 600;
+  }
+
+  /* RTL specific styles */
+  blockquote[dir='rtl'] {
+    border-left: none;
+    border-right: 2px solid var(--lumo-contrast-30pct);
+  }
+`;registerStyles$1("",typography,{moduleId:"lumo-typography"});const $tpl$1=document.createElement("template");$tpl$1.innerHTML=`<style>${font.toString().replace(":host","html")}</style>`;document.head.appendChild($tpl$1.content);registerStyles$1("vaadin-checkbox",css$e`
     :host {
       color: var(--lumo-body-text-color);
       font-size: var(--lumo-font-size-m);
@@ -15409,7 +15780,54 @@ northing meters`+n;var p=u/2,f=0,v=0,g,m,_,y,b;return p>0&&(g=1e5/Math.pow(10,p)
       :host {
         display: block;
       }
-    `}static get properties(){return{continuous:{type:Boolean},speech:{type:String}}}constructor(){super(),this.initializeRecognition(),this.speech="Press the 'Start' button to start recording your voice."}connectedCallback(){super.connectedCallback(),this.initializeAttributes(),this.initializeEventListeners()}initializeRecognition(){const i=window.SpeechRecognition||window.webkitSpeechRecognition||window.mozSpeechRecognition||window.msSpeechRecognition||window.oSpeechRecognition;this.recognition=i!==void 0?new i:console.error("Your browser does not support the Web Speech API")}initializeAttributes(){this.continuous=this.hasAttribute("continuous"),this.speech=this.getAttribute("speech")||"",this.recognition&&(this.recognition.continuous=this.continuous,this.recognition.interimResults=!1)}initializeEventListeners(){if(!this.recognition){console.log("recognition not initialized");return}["start","end","error","speechResult"].forEach(i=>this.recognition.addEventListener(i,t=>this.dispatchEvent(new CustomEvent(i,{detail:t})))),this.recognition.addEventListener("result",i=>{this.speech=[...Array(i.results.length).keys()].slice(i.resultIndex).map(t=>i.results[t][0].transcript).reduce((t,r)=>t+r,this.speech),this.dispatchEvent(new CustomEvent("speechResult",{detail:{speech:this.speech}}))})}start(){this.recognition.start()}stop(){this.recognition.stop()}abort(){this.recognition.abort()}render(){return html$1`
+      .recording {
+        background-color: grey;
+      }
+      button {
+        cursor: pointer;
+        padding: 10px 20px;
+        font-size: 14px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background-color: #007BFF;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        outline: none;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        margin-right: 5px;
+      }
+      button:hover {
+        background-color: #0069D9;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      button:active {
+        background-color: #0062CC;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+      button:disabled {
+        background-color: #6C757D;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+      .clear-speech {
+        background-color: #FFC107;
+      }
+      .clear-speech:hover {
+        background-color: #FFB300;
+      }
+      .clear-speech:active {
+        background-color: #FFA000;
+      }
+    `}static get properties(){return{continuous:{type:Boolean},speech:{type:String},isRecording:{type:Boolean},useInternalButtons:{type:Boolean}}}constructor(){super(),this.initializeRecognition(),this.speech="Press the 'Start' button to start recording your voice.",this.isRecording=!1,this.lastResultIndex=0,this.useInternalButtons=!0}connectedCallback(){super.connectedCallback(),this.initializeAttributes(),this.initializeEventListeners()}initializeRecognition(){const i=window.SpeechRecognition||window.webkitSpeechRecognition||window.mozSpeechRecognition||window.msSpeechRecognition||window.oSpeechRecognition;this.recognition=i!==void 0?new i:console.error("Your browser does not support the Web Speech API"),this.useInternalButtons=this.hasAttribute("use-internal-buttons")||!0}initializeAttributes(){this.continuous=this.hasAttribute("continuous"),this.speech=this.getAttribute("speech")||"",this.recognition&&(this.recognition.continuous=this.continuous,this.recognition.interimResults=!1)}initializeEventListeners(){if(!this.recognition){console.log("recognition not initialized");return}["start","end","error","speechResult"].forEach(i=>this.recognition.addEventListener(i,t=>this.dispatchEvent(new CustomEvent(i,{detail:t})))),this.recognition.addEventListener("result",i=>{const t=[...Array(i.results.length).keys()].slice(this.lastResultIndex).map(r=>i.results[r][0].transcript);this.speech=this.speech+t.join(" "),this.lastResultIndex=i.results.length,this.dispatchEvent(new CustomEvent("speechResult",{detail:{speech:this.speech}}))})}start(){this.isRecording?(this.recognition.stop(),this.isRecording=!1):(this.recognition.start(),this.isRecording=!0,this.lastResultIndex=0)}stop(){this.recognition.stop()}abort(){this.recognition.abort()}clearSpeech(){this.speech=""}render(){return html$1`
       <slot></slot>
+      ${this.useInternalButtons?html$1`
+            <button
+              class="${this.isRecording?"recording":""}"
+              @click="${this.start}"
+            >
+              ${this.isRecording?"Stop":"Start"}
+            </button>
+            <button class="clear-speech" @click="${this.clearSpeech}">Clear Speech</button>
+          `:""}
       <p>${this.speech}</p>
     `}}customElements.define("voice-recognition",VoiceRecognition);const addCssBlock=function(n,i=!1){const t=document.createElement("template");t.innerHTML=n,document.head[i?"insertBefore":"appendChild"](t.content,document.head.firstChild)};export{addCssBlock};
